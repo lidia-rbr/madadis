@@ -7,7 +7,7 @@ import { CartContext } from "../../utils/Context/CartContext";
 
 const StyledLink = styled(Link)`
   padding: 15px;
-  color: black;
+  color: ${({ theme }) => theme.text};;
   text-decoration: none;
   color: ${({ theme }) => theme.nav};
   //   font-size: 18px;
@@ -22,7 +22,7 @@ const StyledLink = styled(Link)`
 
 const StyledNav = styled.nav`
   background-color: ${({ isScrolled, theme }) =>
-    isScrolled ? theme.scrolledNavBar : "transparent"};
+    isScrolled ? theme.primary : "transparent"};
   display: flex;
   align-items: center;
   height: 60px;

@@ -11,14 +11,31 @@ function GlobalStyle() {
 
   body {  
   min-height: 100vh;
-background: radial-gradient(circle, 
-${({ theme }) => theme.gradientPurple} 0%, 
-${({ theme }) => theme.gradientBlue} 50%, 
-${({ theme }) => theme.gradientPink} 100%);
-    color: ${({ theme }) => theme.text};
-    transition: all 0.25s linear;
-    padding-top:60px
+  background-color: ${({ theme }) => theme.body};
+  // transition: background-color 0s ease-in;
+  // transition: all 1s ease-in;
   }
+
+  .custom-shape-divider-bottom-1720480589 {
+    margin-top:auto;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1720480589 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 55px;
+}
+
+.custom-shape-divider-bottom-1720480589 .shape-fill {
+    fill: ${({ theme }) => theme.body};
+          // transition: fill 0s ease-in;
+}
 `;
 
   return <StyledGlobalStyle isDarkMode={theme === "dark"} />;

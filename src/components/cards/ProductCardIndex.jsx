@@ -32,7 +32,7 @@ const CardWrapper = styled.div`
   transition: 200ms;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.mainTitleColor};
+  background-color: ${({ theme }) => theme.cards};
   &:hover {
     cursor: pointer;
     box-shadow: 2px 2px 10px grey;

@@ -2,18 +2,34 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
+const PageFormWrapper = styled.div`
+  margin-top: 60px;
+  padding-top:60px;
+  padding-bottom:60px;
+  display: flex;
+  justify-content: center;
+  background: radial-gradient(
+    circle,
+    ${({ theme }) => theme.primary} 0%,
+    ${({ theme }) => theme.secondary} 100%
+  );
+`;
+
 const FormContainer = styled.div`
-  max-width: 600px;
-  margin: 20px;
+  width: 60%;
   padding: 20px;
+  // margin: 80px auto 80px auto;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color:  ${({ theme }) => theme.contactUs};
+  background-color:${({ theme }) => theme.cards};
+  color: ${({ theme }) => theme.text};
 `;
 
 const FormButton = styled(Button)`
-  color: white;
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.accent};
   text-decoration: none;
+  border: none;
   padding: 0.6rem 2rem;
   margin-top: 1rem;
   display: inline-block;
@@ -47,48 +63,50 @@ const ContactForm = () => {
   };
 
   return (
-    <FormContainer>
-      <h2>Contact Us</h2>
-      <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label for="name">Your Name</Label>
-          <Input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Enter your name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="email">Your Email</Label>
-          <Input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="message">Message</Label>
-          <Input
-            type="textarea"
-            name="message"
-            id="message"
-            placeholder="Enter your message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          />
-        </FormGroup>
-        <FormButton type="submit">Submit</FormButton>
-      </Form>
-    </FormContainer>
+    <PageFormWrapper>
+      <FormContainer>
+        <h2>Contact Us</h2>
+        <Form onSubmit={handleSubmit}>
+          <FormGroup>
+            <Label for="name">Your Name</Label>
+            <Input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter your name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="email">Your Email</Label>
+            <Input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="message">Message</Label>
+            <Input
+              type="textarea"
+              name="message"
+              id="message"
+              placeholder="Enter your message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            />
+          </FormGroup>
+          <FormButton type="submit">Submit</FormButton>
+        </Form>
+      </FormContainer>
+    </PageFormWrapper>
   );
 };
 

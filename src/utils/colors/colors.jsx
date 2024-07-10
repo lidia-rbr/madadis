@@ -1,11 +1,12 @@
 export const lightTheme = {
-    body: '#BF9004', // Salmon
-    text: '#00000063', // Terracotta
-    toggleBorder: '#F2CB05',// gold
-    background: '#CFA990', // Clay
-    primary: '#56BFA1', // Turquoise
-    secondary: '#56BFA1', // yellow
-    accent: '#A6518F',// Purple
+    body: '#E8F3F1',
+    text: '#1f1f1f',
+    toggleBorder: '#F2CB05',
+    background: '#CFA990',
+    primary: '#56BFA1',
+    secondary: '#2C8E93',
+    accent: '#D4ED8B',
+    cards:'#ecfdf7b3',
     navbar: '#50E3C2',
     gradientBlue:'#71ebe3',
     gradientPink:'#e5578d',
@@ -20,13 +21,14 @@ export const lightTheme = {
   };
   
   export const darkTheme = {
-    body: '#121212',
+    body: '#333333',
     text: '#E0E0E0',
     toggleBorder: '#BB86FC',
     background: '#1E1E1E',
-    primary: '#0F2B34',
-    secondary: '#292929',
-    accent: '#BB86FC',
+    primary: '#2F4858',
+    secondary: '#1C6E7D',
+    accent: '#F9F871',
+    cards:'#ECFDF7',
     navbar: '#21214a',
     gradientBlue:'#106762',
     gradientPink:'#672d44',

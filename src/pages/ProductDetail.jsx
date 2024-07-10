@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { ProductContext } from '../utils/Context/ProductContext';
+import { useFetch } from '../utils/hooks/GetProducts';
 import styled from "styled-components";
 import { Button } from "reactstrap";
 import { CartContext } from '../utils/Context/CartContext';
+import Loader from '../components/loader/loaderIndex';
 
 const ProductDetailWrapper = styled.div`
   display: flex;
@@ -87,21 +88,25 @@ const AddToCartButton = styled(Button)`
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const { products } = useContext(ProductContext);
   const { addToCart } = useContext(CartContext);
-  const product = products.find((p) => p.id === parseInt(id));
-
-  if (!product) {
+  const { isLoading, data, error } = useFetch(`https://dummyjson.com/products/${id}`);
+  if (!data) {
     return <div>Product not found</div>;
+  }
+  if (isLoading) {
+    return <Loader />
+  }
+  if (error) {
+    console.log(error);
   }
 
   const handleAddToCart = () => {
     const item = {
-      title: product.title,
-      description: product.description,
-      picture: product.images[0],
-      price: product.price.toFixed(2),
-      id: product.id,
+      title: data.title,
+      description: data.description,
+      picture: data.images[0],
+      price: data.price.toFixed(2),
+      id: data.id,
       quantity: 1,
     };
     addToCart(item);
@@ -109,48 +114,48 @@ const ProductDetail = () => {
 
   return (
     <ProductDetailWrapper>
-      <ProductImage src={product.images[0]} alt={product.title} />
-      <ProductTitle>{product.title}</ProductTitle>
-      <ProductPrice>${product.price.toFixed(2)}</ProductPrice>
-      <ProductDescription>{product.description}</ProductDescription>
+      <ProductImage src={data.images[0]} alt={data.title} />
+      <ProductTitle>{data.title}</ProductTitle>
+      <ProductPrice>${data.price.toFixed(2)}</ProductPrice>
+      <ProductDescription>{data.description}</ProductDescription>
       <AddToCartButton onClick={handleAddToCart}>🛒 Add to cart</AddToCartButton>
       
       <ProductInfo>
         <div>
-          <InfoLabel>Category:</InfoLabel> {product.category}
+          <InfoLabel>Category:</InfoLabel> {data.category}
         </div>
         <div>
-          <InfoLabel>Brand:</InfoLabel> {product.brand}
+          <InfoLabel>Brand:</InfoLabel> {data.brand}
         </div>
         <div>
-          <InfoLabel>SKU:</InfoLabel> {product.sku}
+          <InfoLabel>SKU:</InfoLabel> {data.sku}
         </div>
         <div>
-          <InfoLabel>Weight:</InfoLabel> {product.weight}g
+          <InfoLabel>Weight:</InfoLabel> {data.weight}g
         </div>
         <div>
-          <InfoLabel>Dimensions:</InfoLabel> {product.dimensions.width}cm (W) x {product.dimensions.height}cm (H) x {product.dimensions.depth}cm (D)
+          <InfoLabel>Dimensions:</InfoLabel> {data.dimensions.width}cm (W) x {data.dimensions.height}cm (H) x {data.dimensions.depth}cm (D)
         </div>
         <div>
-          <InfoLabel>Warranty:</InfoLabel> {product.warrantyInformation}
+          <InfoLabel>Warranty:</InfoLabel> {data.warrantyInformation}
         </div>
         <div>
-          <InfoLabel>Shipping Info:</InfoLabel> {product.shippingInformation}
+          <InfoLabel>Shipping Info:</InfoLabel> {data.shippingInformation}
         </div>
         <div>
-          <InfoLabel>Availability:</InfoLabel> {product.availabilityStatus}
+          <InfoLabel>Availability:</InfoLabel> {data.availabilityStatus}
         </div>
         <div>
-          <InfoLabel>Return Policy:</InfoLabel> {product.returnPolicy}
+          <InfoLabel>Return Policy:</InfoLabel> {data.returnPolicy}
         </div>
         <div>
-          <InfoLabel>Minimum Order Quantity:</InfoLabel> {product.minimumOrderQuantity}
+          <InfoLabel>Minimum Order Quantity:</InfoLabel> {data.minimumOrderQuantity}
         </div>
       </ProductInfo>
 
       <ReviewsSection>
         <h2>Reviews</h2>
-        {product.reviews.map((review, index) => (
+        {data.reviews.map((review, index) => (
           <Review key={index}>
             <ReviewerName>{review.reviewerName}</ReviewerName>
             <ReviewDate>{new Date(review.date).toLocaleDateString()}</ReviewDate>

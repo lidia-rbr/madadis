@@ -7,11 +7,15 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 15px;
-  background-color: ${({ theme }) => theme.mainTitleColor};
   border-radius: 10px;
   transition: 200ms;
   align-items: center;
   justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+    width: 200px;  // Set a fixed width
+  height: 100px; // Set a fixed height
+  background-color: ${({ theme }) => theme.contactUs};
   &:hover {
     cursor: pointer;
     box-shadow: 2px 2px 10px grey;
@@ -19,9 +23,8 @@ const CardWrapper = styled.div`
 `;
 
 const CardLabel = styled.div`
-  color: black;
-  font-size: 22px;
-  font-weight: bold;
+  color: ${({ theme }) => theme.text};
+  font-size: 18px;
   text-align: center;
 `;
 
@@ -30,11 +33,13 @@ const CategoryLink = styled(Link)`
   color: inherit;
 `;
 
-function CategoryCard({ category, count }) {
+function CategoryCard({ slug, category }) {
   return (
-    <CategoryLink to={`/products?category=${category}`}>
+    <CategoryLink to={`/products?category=${slug}`}>
       <CardWrapper>
-        <CardLabel>{category} ({count})</CardLabel>
+        <CardLabel>
+          {category}
+        </CardLabel>
       </CardWrapper>
     </CategoryLink>
   );

@@ -20,8 +20,8 @@ const LoaderWrapper = styled.div`
 `;
 
 const Spinner = styled.div`
-  border: 8px solid ${({ theme }) => theme.loaderColor || '#f3f3f3'};
-  border-top: 8px solid ${({ theme }) => theme.loaderAccentColor || '#3498db'};
+  border: 8px solid ${({ theme }) => theme.primary || '#f3f3f3'};
+  border-top: 8px solid ${({ theme }) => theme.accent || '#3498db'};
   border-radius: 50%;
   width: 60px;
   height: 60px;

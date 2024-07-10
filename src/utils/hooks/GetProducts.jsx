@@ -7,8 +7,6 @@ export function useFetch(url) {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // useReduce to store several values
-
   useEffect(() => {
     if (!url) return
     setLoading(true)

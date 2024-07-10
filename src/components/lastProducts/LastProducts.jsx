@@ -2,28 +2,63 @@ import Card from "../cards/ProductCardIndex";
 import { ProductContext } from "../../utils/Context/ProductContext";
 import { useContext } from "react";
 import styled from "styled-components";
+import Carousel from "react-bootstrap/Carousel";
+import { Link } from "react-router-dom";
 
 const CardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 20px;
-  background-color:${({ theme }) => theme.productBackground};
 `;
 
-// const LastProductTitleContainer = styled.div`
-//   height: 5vh;
-//   background-color: ${({ theme }) => theme.primary};
-//   display: flex;
-//   align-items: end;
-//   margin-left: 2p;
-//   padding-left: 17px;
-// `;
+const LastProductTitleContainer = styled.div`
+  height: 7vh;
+  display: flex;
+  padding-left: 20px;
+  align-items: end;
+  padding-left: 17px;
+`;
 
-// const LastProductTitle = styled.h2`
-//   font-size: 18px;
-//   color: ${({ theme }) => theme.accent};
-// `;
+const LastProductTitle = styled.h2`
+  font-size: 18px;
+`;
+
+const StyledCarousel = styled(Carousel)`
+  width: 80%;
+  margin: auto;
+  // heigth: 100px;
+  width: 40%;
+  position: relative;
+  top: -30vh;
+  right: -22vw;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  box-shadow: ${({ theme }) => theme.accent} 2px 5px 9px;
+`;
+
+const StyledCarouselItem = styled(Carousel.Item)`
+  background-color: ${({ theme }) => theme.cards} // Duplicate
+`;
+
+const StyledItemContainer = styled.div`
+  display: flex;
+  background-color: ${({ theme }) => theme.cards}; // Duplicate
+
+  @media (max-width: 1024px) {
+    display: block;
+  }
+`;
+
+const StyledCarouselCaption = styled(Carousel.Caption)`
+  color: ${({ theme }) => theme.text};
+  position: sticky;
+  font-size:0.8rem
+`;
+
+const CarouselImage = styled.img`
+  width: 100%;
+`;
 
 function LastProductSection() {
   const { products, loading } = useContext(ProductContext);
@@ -34,28 +69,30 @@ function LastProductSection() {
     products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     // Get the last 6 products based on createdAt date
-    const lastSixProducts = products.slice(0, 6);
+    // const lastSixProducts = products.slice(0, 6);
+    const lastSixProducts = [products[0]];
 
     return (
       <>
         {/* <LastProductTitleContainer>
-          <LastProductTitle>Our last products 🔥</LastProductTitle>
+          <LastProductTitle>Discover our last products 🔥</LastProductTitle>
         </LastProductTitleContainer> */}
-        <CardContainer>
+        <StyledCarousel>
           {lastSixProducts.map((product, index) => (
-            <>
-              <Card
-                key={product.id}
-                title={product.title}
-                description={product.description}
-                price={product.price}
-                picture={product.images[0]}
-                link={`/product/${product.id}`}
-                id={product.id}
-              ></Card>
-            </>
+            <StyledCarouselItem>
+              <StyledItemContainer>
+                <Link to={`/product/${product.id}`}>
+                  <CarouselImage src={product.images[0]} alt={product.title} />
+                </Link>
+                <StyledCarouselCaption>
+                  <h3>{product.title}</h3>
+                  <p>{product.description}</p>
+                  <p>{product.price}$</p>
+                </StyledCarouselCaption>
+              </StyledItemContainer>
+            </StyledCarouselItem>
           ))}
-        </CardContainer>
+        </StyledCarousel>
       </>
     );
   }

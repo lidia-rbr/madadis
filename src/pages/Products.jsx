@@ -1,15 +1,17 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState } from "react";
 import Card from "../components/cards/ProductCardIndex";
-import { ProductContext } from "../utils/Context/ProductContext";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import Loader from "../components/loader/loaderIndex";
-import { Pagination } from "react-bootstrap";
+import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Link } from "react-router-dom";
+import { useFetch } from "../utils/hooks/GetProducts";
 
 function useQuery() {
-  return new URLSearchParams(useLocation().search);
+  const query = new URLSearchParams(useLocation().search);
+  const category = query.get("category");
+  return category ? category : "";
 }
 
 const CardContainer = styled.div`
@@ -17,7 +19,11 @@ const CardContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 20px;
-  background-color: ${({ theme }) => theme.productBackground};
+  background: radial-gradient(
+    circle,
+    ${({ theme }) => theme.primary} 0%,
+    ${({ theme }) => theme.secondary} 100%
+  );
 `;
 
 const StyledPagination = styled(Pagination)`
@@ -32,7 +38,7 @@ const StyledPagination = styled(Pagination)`
     font-size: 14px;
     background-color: transparent;
     border: none;
-    color: black;
+    color: ${({ theme }) => theme.text};
   }
   .page-item.active {
     background-color: ${({ theme }) => theme.productBackground};
@@ -45,22 +51,23 @@ const FilterDiv = styled.div`
   background-color: ${({ theme }) => theme.productBackground};
   align-items: center;
   padding: 20px;
+  margin-top: 60px;
 `;
 
 const CategoryDisplayed = styled.h1`
   float: right;
   margin-left: auto;
-  color: ${({ theme }) => theme.nav};
-  text-align:right
+  color: ${({ theme }) => theme.primary};
+  text-align: right;
 `;
 
 const StyledDropdownToggle = styled(Dropdown.Toggle)`
   background-color: transparent !important;
-  border: none !important;;
-  color: ${({ theme }) => theme.nav} !important;
+  border: none !important;
+  color: ${({ theme }) => theme.primary} !important;
   &:hover {
     color: ${({ theme }) => theme.nav};
-    background-color: ${({ theme }) => theme.nav} !important;
+    background-color: ${({ theme }) => theme.accent} !important;
     color: black;
     border-radius: 30px;
     transition: 200ms;
@@ -71,7 +78,8 @@ const StyledDropdownToggle = styled(Dropdown.Toggle)`
     border-radius: 30px;
     transition: 200ms;
   }
-  &:show, &:link{
+  &:show,
+  &:link {
     color: red !important;
   }
 `;
@@ -98,72 +106,71 @@ const StyledLink = styled(Link)`
 `;
 
 const Products = () => {
-  const { products, loading, categories } = useContext(ProductContext);
+  const [selectedCategory, setSelectedCategory] = useState(useQuery());
+  const [firstProductIndex, setFirstProductIndex] = useState(0);
+  const [currentPageIndex, setCurrentPageIndex] = useState(1);
+  const nbOfProductsPerPage = 30;
 
-  // Check if any category filter applied
-  const query = useQuery();
-  const category = query.get("category");
-  const filteredProducts = category
-    ? products.filter((product) => product.category === category)
-    : products;
+  // Get entire data set to define pagination
+  const {
+    isLoading: loadingTotal,
+    data: totalData,
+    error: errorTotal,
+  } = useFetch(`https://dummyjson.com/products?limit=0`);
 
-  const [selectedCategory, setSelectedCategory] = useState(category);
+  // Get data set for current page
+  const {
+    isLoading: loadingPageProducts,
+    data: pageProductsData,
+    error: errorPageProducts,
+  } = useFetch(
+    `https://dummyjson.com/products?limit=${nbOfProductsPerPage}&skip=${firstProductIndex}`
+  );
 
-  // Count item by category
-  const categoryCounts = products.reduce((acc, product) => {
-    acc[product.category] = (acc[product.category] || 0) + 1;
-    return acc;
-  }, {});
-
-  // Pagination setup
-  const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 12;
-
-  useEffect(() => {
-    setCurrentPage(1); // Reset page when category changes
-  }, [category]);
-
-  const onPageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  if (loading) {
+  if (loadingTotal || loadingPageProducts) {
     return <Loader />;
   }
-
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-
-  // Logic to calculate the range of page numbers to display
-  const pageRange = 2; // Number of pages to display on either side of the current page
-  let startPage = currentPage - pageRange;
-  let endPage = currentPage + pageRange;
-
-  // Calculate start and end page to display on the navigation
-  if (startPage < 1) {
-    startPage = 1;
-    endPage = Math.min(startPage + 2 * pageRange, totalPages);
-  }
-
-  if (endPage > totalPages) {
-    endPage = totalPages;
-    startPage = Math.max(endPage - 2 * pageRange, 1);
-  }
-
-  const pageNumbers = [];
-  for (let number = startPage; number <= endPage; number++) {
-    pageNumbers.push(
-      <Pagination.Item
-        key={number}
-        active={number === currentPage}
-        onClick={() => onPageChange(number)}
-      >
-        {number}
-      </Pagination.Item>
+  if (errorTotal || errorPageProducts) {
+    return (
+      <div>
+        {errorTotal}
+        {errorPageProducts}
+      </div>
     );
   }
 
+  const products = pageProductsData.products;
+  const totalPages = totalData.products.length / nbOfProductsPerPage;
+  const categories = [
+    ...new Set(totalData.products.map((product) => product.category)),
+  ];
+
+  // Check if any category filter
+  // As the API doesn't allow to filter by category, this will erase the navigation
+  const filteredProducts =
+    selectedCategory && selectedCategory !== "all"
+      ? totalData.products.filter(
+          (product) => product.category === selectedCategory
+        )
+      : products;
+
+  // When user selects a category to filter on
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
+  };
+
+  // When user uses navigation
+  const handlePageChange = (pageIndex) => {
+    setFirstProductIndex((pageIndex - 1) * nbOfProductsPerPage);
+    setCurrentPageIndex(pageIndex);
+  };
+
+  const goToPreviousPage = () => {
+    handlePageChange(currentPageIndex - 1);
+  };
+
+  const goToNextPage = () => {
+    handlePageChange(currentPageIndex + 1);
   };
 
   return (
@@ -174,61 +181,73 @@ const Products = () => {
             Filter by category
           </StyledDropdownToggle>
           <StyledMenu>
-            <StyledItem eventKey="Discover all of our products">
+            <StyledItem eventKey="all">
               <StyledLink to={`/products`}>All ({products.length})</StyledLink>
             </StyledItem>
             {categories.map((category) => (
               <StyledItem key={category} eventKey={category}>
                 <StyledLink to={`/products?category=${category}`}>
-                  {category} ({categoryCounts[category]})
+                  {category}
                 </StyledLink>
               </StyledItem>
             ))}
           </StyledMenu>
         </Dropdown>
         <CategoryDisplayed>
-          {selectedCategory ? selectedCategory : "Discover all of our products"}
+          {selectedCategory && selectedCategory !== "all"
+            ? selectedCategory
+            : "Discover all of our products"}
         </CategoryDisplayed>
       </FilterDiv>
       <CardContainer>
-        {/* Display products for the current page */}
-        {filteredProducts
-          .slice(
-            (currentPage - 1) * productsPerPage,
-            currentPage * productsPerPage
-          )
-          .map((product) => (
-            <Card
-              key={product.id}
-              title={product.title}
-              description={product.description}
-              price={product.price}
-              picture={product.images[0]}
-              link={`/product/${product.id}`}
-              id={product.id}
-            />
-          ))}
+        {filteredProducts.map((product) => (
+          <Card
+            key={product.id}
+            title={product.title}
+            description={product.description}
+            price={product.price}
+            picture={product.images[0]}
+            link={`/product/${product.id}`}
+            id={product.id}
+          />
+        ))}
       </CardContainer>
-      {/* Pagination component */}
-      {totalPages > 1 && (
+      {selectedCategory === "all" && (
         <StyledPagination>
-          <Pagination.First onClick={() => onPageChange(1)} />
-          <Pagination.Prev
-            onClick={() => onPageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-          />
-
-          {startPage > 1 && <Pagination.Ellipsis />}
-
-          {pageNumbers}
-
-          {endPage < totalPages && <Pagination.Ellipsis />}
-
-          <Pagination.Next
-            onClick={() => onPageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          />
-          <Pagination.Last onClick={() => onPageChange(totalPages)} />
+          <PaginationItem>
+            <PaginationLink
+              first
+              href="#"
+              onClick={() => handlePageChange(1)}
+            />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink
+              href="#"
+              previous
+              onClick={() => goToPreviousPage()}
+            />
+          </PaginationItem>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <PaginationItem>
+              <PaginationLink
+                href="#"
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+          <PaginationItem>
+            <PaginationLink href="#" next onClick={() => goToNextPage()} />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink
+              href="#"
+              last
+              onClick={() => handlePageChange(totalPages)}
+            />
+          </PaginationItem>
         </StyledPagination>
       )}
     </>
