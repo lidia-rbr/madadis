@@ -12,8 +12,6 @@ function GlobalStyle() {
   body {  
   min-height: 100vh;
   background-color: ${({ theme }) => theme.body};
-  // transition: background-color 0s ease-in;
-  // transition: all 1s ease-in;
   }
 
   .custom-shape-divider-bottom-1720480589 {
@@ -36,6 +34,7 @@ function GlobalStyle() {
     fill: ${({ theme }) => theme.body};
           // transition: fill 0s ease-in;
 }
+
 `;
 
   return <StyledGlobalStyle isDarkMode={theme === "dark"} />;

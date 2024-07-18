@@ -105,6 +105,14 @@ const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.nav};
 `;
 
+const LoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-height: 50vh;
+`
+
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState(useQuery());
   const [firstProductIndex, setFirstProductIndex] = useState(0);
@@ -128,7 +136,7 @@ const Products = () => {
   );
 
   if (loadingTotal || loadingPageProducts) {
-    return <Loader />;
+    return <LoaderWrapper><Loader /></LoaderWrapper>;
   }
   if (errorTotal || errorPageProducts) {
     return (
@@ -182,7 +190,7 @@ const Products = () => {
           </StyledDropdownToggle>
           <StyledMenu>
             <StyledItem eventKey="all">
-              <StyledLink to={`/products`}>All ({products.length})</StyledLink>
+              <StyledLink to={`/products`}>All ({totalData.products.length})</StyledLink>
             </StyledItem>
             {categories.map((category) => (
               <StyledItem key={category} eventKey={category}>
@@ -229,7 +237,7 @@ const Products = () => {
             />
           </PaginationItem>
           {Array.from({ length: totalPages }, (_, index) => (
-            <PaginationItem>
+            <PaginationItem active={index + 1 === currentPageIndex}>
               <PaginationLink
                 href="#"
                 onClick={() => handlePageChange(index + 1)}

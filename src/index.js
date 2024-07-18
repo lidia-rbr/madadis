@@ -18,6 +18,10 @@ import { ProductProvider } from "./utils/Context/ProductContext";
 import { CartContextProvider } from "./utils/Context/CartContext";
 import Footer from "./components/footer/footerIndex";
 import { Wrapper, Content } from "./components/wrapper/wrapperIndex";
+import LoginForm from "./pages/loginIndex";
+import { UserContextProvider } from "./utils/Context/UserContext";
+import UserProfile from "./pages/Profile";
+import Pay from "./pages/Pay";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -26,23 +30,28 @@ root.render(
       <CustomThemeProvider>
         <GlobalStyle />
         <ProductProvider>
-          <CartContextProvider>
-            <Wrapper>
-              <NavComponent />
-              <Content>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/cart" element={<Cart />} />
-                  <Route path="/Categories" element={<Categories />} />
-                  <Route path="/Products" element={<Products />} />
-                  <Route path="/Contact" element={<Contact />} />
-                  <Route path="/Product/:id" element={<ProductDetail />} />
-                  <Route path="*" element={<Error />} />
-                </Routes>
-              </Content>
-              <Footer />
-            </Wrapper>
-          </CartContextProvider>
+          <UserContextProvider>
+            <CartContextProvider>
+              <Wrapper>
+                <NavComponent />
+                <Content>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/Categories" element={<Categories />} />
+                    <Route path="/Products" element={<Products />} />
+                    <Route path="/Contact" element={<Contact />} />
+                    <Route path="/Product/:id" element={<ProductDetail />} />
+                    <Route path="/login" element={<LoginForm />} />
+                    <Route path="/profile" element={<UserProfile />} />
+                    <Route path="/payment" element={<Pay />} />
+                    <Route path="*" element={<Error />} />
+                  </Routes>
+                </Content>
+                <Footer />
+              </Wrapper>
+            </CartContextProvider>
+          </UserContextProvider>
         </ProductProvider>
       </CustomThemeProvider>
     </Router>

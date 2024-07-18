@@ -17,11 +17,19 @@ const CategoryPageWrapper = styled.div`
   );
 `;
 
+const LoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-height: 50vh;
+`
+
 function CategoryPage() {
   const { isLoading, data, error } = useFetch('https://dummyjson.com/products/categories');
 
   if (isLoading) {
-    return <Loader />;
+    return <LoaderWrapper><Loader /></LoaderWrapper>;
   }
   if (error) {
     console.log(error);

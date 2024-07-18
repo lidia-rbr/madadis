@@ -12,7 +12,6 @@ export const CartContextProvider = ({ children }) => {
       (cartItem) => cartItem.id === item.id
     );
 
-    console.log("current id: ", item.id);
     if (existingItemIndex !== -1) {
       // Item already exists, updates its quantity
       const updatedCart = [...cart];

@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../utils/Context/ThemeContext";
 import { CartContext } from "../../utils/Context/CartContext";
-// import logo from "../../assets/logo.jpg";
+import { UserContext } from "../../utils/Context/UserContext";
 
 const StyledLink = styled(Link)`
   padding: 15px;
-  color: ${({ theme }) => theme.text};;
+  color: ${({ theme }) => theme.text};
   text-decoration: none;
   color: ${({ theme }) => theme.nav};
   //   font-size: 18px;
@@ -60,6 +60,8 @@ const NavComponent = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { toggleTheme, theme } = useContext(ThemeContext);
   const { cart } = useContext(CartContext);
+  const { user } = useContext(UserContext);
+
   let nbOfItemsInCart = 0;
   cart.forEach((item) => {
     nbOfItemsInCart += item.quantity;
@@ -92,6 +94,7 @@ const NavComponent = () => {
           {theme === "light" ? "🌙" : "☀️"}
         </NightModeButton>
         <StyledLink to="/cart">Cart {nbOfItemsInCart}</StyledLink>
+        {user ? <StyledLink to="/Profile">{user.firstName}</StyledLink> :<StyledLink to="/login">Login</StyledLink>}
       </StyledRightNav>
     </StyledNav>
   );

@@ -1,8 +1,9 @@
-import { CartContext } from "../utils/Context/CartContext";
-import { useContext } from "react";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { CartContext } from "../utils/Context/CartContext";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../utils/Context/UserContext";
 
 const PageCartWrapper = styled.div`
   margin-top: 60px;
@@ -59,13 +60,11 @@ const DeleteButton = styled(Button)`
 `;
 
 const CheckoutButton = styled(Button)`
-  color: white;
   text-decoration: none;
   margin-top: 1rem;
   border: none;
   display: inline-block;
   background-color: ${({ theme }) => theme.accent};
-  color: ${({ theme }) => theme.text};
   &:hover {
     background-color: ${({ theme }) => theme.primary};
   }
@@ -78,6 +77,16 @@ const CartDetail = styled.div`
 
 const Cart = () => {
   const { cart, removeFromCart } = useContext(CartContext);
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    if (user) {
+      navigate("/payment");
+    } else {
+      navigate("/login?redirect=cart");
+    }
+  };
 
   return (
     <PageCartWrapper>
@@ -100,7 +109,7 @@ const Cart = () => {
                 </DeleteButton>
               </CartItem>
             ))}
-            <CheckoutButton>Checkout</CheckoutButton>
+            <CheckoutButton onClick={handleCheckout}>Checkout</CheckoutButton>
           </>
         )}
       </CartWrapper>

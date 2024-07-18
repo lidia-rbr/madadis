@@ -14,9 +14,8 @@ const LoaderWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: none;
+  width: 100%;
+  height: 100%;
 `;
 
 const Spinner = styled.div`

@@ -43,7 +43,7 @@ const CardImage = styled.img`
   height: 150px;
   position: relative;
   overflow: hidden;
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 const CardLink = styled(Link)`

@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 91.8vh;
+  height: 100vh;
 `;
 
 const Content = styled.div`

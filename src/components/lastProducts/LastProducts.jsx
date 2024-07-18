@@ -57,7 +57,11 @@ const StyledCarouselCaption = styled(Carousel.Caption)`
 `;
 
 const CarouselImage = styled.img`
-  width: 100%;
+  width: 190px;
+  height: 190px;
+  position: relative;
+  overflow: hidden;
+  object-fit: contain;
 `;
 
 function LastProductSection() {
