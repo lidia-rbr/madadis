@@ -119,7 +119,7 @@ const Products = () => {
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const nbOfProductsPerPage = 30;
 
-  // Get entire data set to define pagination
+  // Get total data for category filtering
   const {
     isLoading: loadingTotal,
     data: totalData,
@@ -148,7 +148,7 @@ const Products = () => {
   }
 
   const products = pageProductsData.products;
-  const totalPages = totalData.products.length / nbOfProductsPerPage;
+  const totalPages = pageProductsData.total / nbOfProductsPerPage;
   const categories = [
     ...new Set(totalData.products.map((product) => product.category)),
   ];

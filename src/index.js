@@ -22,6 +22,7 @@ import LoginForm from "./pages/loginIndex";
 import { UserContextProvider } from "./utils/Context/UserContext";
 import UserProfile from "./pages/Profile";
 import Pay from "./pages/Pay";
+import ThankYou from "./pages/Thankyou";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -45,6 +46,7 @@ root.render(
                     <Route path="/login" element={<LoginForm />} />
                     <Route path="/profile" element={<UserProfile />} />
                     <Route path="/payment" element={<Pay />} />
+                    <Route path="/thank-you" element={<ThankYou />} />
                     <Route path="*" element={<Error />} />
                   </Routes>
                 </Content>

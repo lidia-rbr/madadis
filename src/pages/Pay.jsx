@@ -49,10 +49,13 @@ const TotalAmount = styled.p`
 `;
 
 const Pay = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, removeFromCart } = useContext(CartContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  const totalAmount = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   const handlePayment = (e) => {
     e.preventDefault();
@@ -62,6 +65,7 @@ const Pay = () => {
       setLoading(false);
       alert("Payment successful!");
       navigate("/thank-you");
+      cart.forEach((index) => removeFromCart(index));
     }, 2000);
   };
 
