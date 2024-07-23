@@ -1,16 +1,24 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../utils/Context/ThemeContext";
 import { CartContext } from "../../utils/Context/CartContext";
 import { UserContext } from "../../utils/Context/UserContext";
+
+const bounce = keyframes`
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+`;
 
 const StyledLink = styled(Link)`
   padding: 15px;
   color: ${({ theme }) => theme.text};
   text-decoration: none;
   color: ${({ theme }) => theme.nav};
-  //   font-size: 18px;
 
   &:hover {
     background-color: ${({ theme }) => theme.mainTitleColor};
@@ -31,12 +39,13 @@ const StyledNav = styled.nav`
   top: 0;
   width: 100%;
   z-index: 100;
-  //   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `;
 
 const StyledRightNav = styled.div`
   float: right;
   margin-left: auto;
+  display: flex;
+  align-items: center;
 `;
 
 const StyledLeftNav = styled.div`
@@ -50,14 +59,13 @@ const NightModeButton = styled.button`
   cursor: pointer;
 `;
 
-// const StyledLogo = styled.img`
-//   height: 28px;
-//   margin-left: 14px;
-//   margin-right: 14px;
-// `;
+const CartLink = styled(StyledLink)`
+  animation: ${({ isBouncing }) => (isBouncing ? bounce : "none")} 0.5s ease;
+`;
 
 const NavComponent = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isBouncing, setIsBouncing] = useState(false);
   const { toggleTheme, theme } = useContext(ThemeContext);
   const { cart } = useContext(CartContext);
   const { user } = useContext(UserContext);
@@ -66,6 +74,14 @@ const NavComponent = () => {
   cart.forEach((item) => {
     nbOfItemsInCart += item.quantity;
   });
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      setIsBouncing(true);
+      const timer = setTimeout(() => setIsBouncing(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [cart]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,8 +109,14 @@ const NavComponent = () => {
         <NightModeButton onClick={() => toggleTheme()}>
           {theme === "light" ? "🌙" : "☀️"}
         </NightModeButton>
-        <StyledLink to="/cart">Cart {nbOfItemsInCart}</StyledLink>
-        {user ? <StyledLink to="/Profile">{user.firstName}</StyledLink> :<StyledLink to="/login">Login</StyledLink>}
+        <CartLink to="/cart" isBouncing={isBouncing}>
+          Cart {nbOfItemsInCart}
+        </CartLink>
+        {user ? (
+          <StyledLink to="/Profile">{user.firstName}</StyledLink>
+        ) : (
+          <StyledLink to="/login">Login</StyledLink>
+        )}
       </StyledRightNav>
     </StyledNav>
   );

@@ -6,6 +6,7 @@ import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import { CartContext } from "../../utils/Context/CartContext";
+import Loader from "../loader/loaderIndex";
 
 const CardContainer = styled.div`
   display: grid;
@@ -106,7 +107,11 @@ function LastProductSection() {
   const { addToCart } = useContext(CartContext);
 
   if (loading) {
-    return <div>is loading</div>;
+    return (
+      <StyledCarousel>
+        <Loader />
+      </StyledCarousel>
+    );
   } else {
     // Sort products by createdAt date (descending)
     products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -116,7 +121,6 @@ function LastProductSection() {
     // const lastSixProducts = [products[0]];
 
     const handleAddToCart = (id) => {
-      console.log("clicked");
       const product = products.find((product) => product.id === id);
       const item = {
         title: product.title,
