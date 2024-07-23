@@ -27,7 +27,7 @@ function GlobalStyle() {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
-    height: 55px;
+    height: 75px;
 }
 
 .custom-shape-divider-bottom-1720480589 .shape-fill {

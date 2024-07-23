@@ -20,8 +20,8 @@ const StyledCarousel = styled(Carousel)`
   min-height: 70vh;
   width: 45%;
   position: relative;
-  top: -30vh;
-  right: -23vw;
+  top: -49vh;
+  right: -25vw;
   margin-bottom: 20px;
   margin-top: 20px;
 
@@ -59,7 +59,6 @@ const StyledItemContainer = styled.div`
   width: 70%;
   height: 70vh;
   overflow: hidden;
-  display: flex;
   background-color: ${({ theme }) => theme.cards};
   box-shadow: ${({ theme }) => theme.accent} 2px 5px 9px;
 
@@ -111,8 +110,8 @@ function LastProductSection() {
     products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     // Get the last 6 products based on createdAt date
-    const lastSixProducts = products.slice(0, 6);
-    // const lastSixProducts = [products[0]];
+    // const lastSixProducts = products.slice(0, 6);
+    const lastSixProducts = [products[0]];
 
     const handleAddToCart = (id) => {
       const product = products.find((product) => product.id === id);
