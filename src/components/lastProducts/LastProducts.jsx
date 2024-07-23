@@ -1,4 +1,3 @@
-import Card from "../cards/ProductCardIndex";
 import { ProductContext } from "../../utils/Context/ProductContext";
 import { useContext } from "react";
 import styled from "styled-components";
@@ -8,28 +7,17 @@ import { Button } from "reactstrap";
 import { CartContext } from "../../utils/Context/CartContext";
 import Loader from "../loader/loaderIndex";
 
-const CardContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px;
-`;
-
-const LastProductTitleContainer = styled.div`
-  height: 7vh;
+const LoaderWrapper = styled.div`
   display: flex;
-  padding-left: 20px;
-  align-items: end;
-  padding-left: 17px;
-`;
-
-const LastProductTitle = styled.h2`
-  font-size: 18px;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-height: 70vh;
 `;
 
 const StyledCarousel = styled(Carousel)`
   margin: auto;
-  // heigth: 100px;
+  min-height: 70vh;
   width: 45%;
   position: relative;
   top: -30vh;
@@ -109,7 +97,13 @@ function LastProductSection() {
   if (loading) {
     return (
       <StyledCarousel>
-        <Loader />
+        <StyledCarouselItem>
+          <StyledItemContainer>
+            <LoaderWrapper>
+              <Loader />
+            </LoaderWrapper>
+          </StyledItemContainer>
+        </StyledCarouselItem>
       </StyledCarousel>
     );
   } else {
