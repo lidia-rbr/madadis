@@ -6,21 +6,21 @@ import { CartContext } from "../../utils/Context/CartContext";
 import { useContext } from "react";
 
 const CardLabel = styled.div`
-  color: black;
+  color: ${({ theme }) => theme.text};
   font-size: 14px;
   font-weight: bold;
   text-align: center;
 `;
 
 const CardPrice = styled.div`
-  color: black;
+  color: ${({ theme }) => theme.text};
   font-size: 25px;
   font-weight: bold;
   text-align: center;
 `;
 
 const CardDescription = styled.div`
-  color: black;
+  color: ${({ theme }) => theme.text};
   font-size: 10px;
 `;
 
@@ -28,7 +28,7 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 15px;
-  //   border-radius: 30px;
+  border-radius: 10px;
   transition: 200ms;
   align-items: center;
   justify-content: space-between;

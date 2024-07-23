@@ -11,7 +11,7 @@ import { useFetch } from "../utils/hooks/GetProducts";
 function useQuery() {
   const query = new URLSearchParams(useLocation().search);
   const category = query.get("category");
-  return category ? category : "";
+  return category ? category : "all";
 }
 
 const CardContainer = styled.div`

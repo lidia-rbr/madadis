@@ -19,12 +19,12 @@ const HomeBanner = styled.div`
 const HomeTitle = styled.h1`
   position: absolute;
   color: ${({ theme }) => theme.accent};
-    text-align: left;
-    padding: 0%;
-    margin-left: 5vw;
-    margin-bottom: 4vh;
-    font-size: 60px;
-    font-weight: bolder;
+  text-align: left;
+  padding: 0%;
+  margin-left: 5vw;
+  margin-bottom: 4vh;
+  font-size: 6vw;
+  font-weight: bolder;
 `;
 
 function Home() {

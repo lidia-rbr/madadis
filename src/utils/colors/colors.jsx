@@ -28,7 +28,7 @@ export const lightTheme = {
     primary: '#2F4858',
     secondary: '#1C6E7D',
     accent: '#F9F871',
-    cards:'#ECFDF7',
+    cards:'#333333',
     navbar: '#21214a',
     gradientBlue:'#106762',
     gradientPink:'#672d44',
@@ -36,7 +36,7 @@ export const lightTheme = {
     nav:'#ffffff61',
     mainTitleColor:'#ffffff61',
     footerBackground:'#212121',
-    productBackground:'#271f34bf',
+    productBackground:'#ffffff61',
     scrolledNavBar: '#57384a',
     dropDownMenu:'#161616e3',
     contactUs: '#00000070'

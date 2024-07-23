@@ -26,7 +26,7 @@ const FormContainer = styled.div`
 `;
 
 const FormButton = styled(Button)`
-  color: ${({ theme }) => theme.text};
+  color:${({ theme }) => theme.background};
   background-color: ${({ theme }) => theme.accent};
   text-decoration: none;
   border: none;

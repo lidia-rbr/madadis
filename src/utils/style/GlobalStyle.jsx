@@ -32,7 +32,6 @@ function GlobalStyle() {
 
 .custom-shape-divider-bottom-1720480589 .shape-fill {
     fill: ${({ theme }) => theme.body};
-          // transition: fill 0s ease-in;
 }
 
 `;

@@ -37,7 +37,7 @@ const CartItem = styled.div`
   padding: 10px;
   border: 1px solid #eee;
   border-radius: 5px;
-  background-color: #fff; /* Ensure the item has a background */
+  background-color: ${({ theme }) => theme.body};
 `;
 
 const CartImage = styled.img`
@@ -65,15 +65,24 @@ const CheckoutButton = styled(Button)`
   border: none;
   display: inline-block;
   background-color: ${({ theme }) => theme.accent};
+  color:${({ theme }) => theme.background};
   &:hover {
     background-color: ${({ theme }) => theme.primary};
   }
 `;
 
 const CartDetail = styled.div`
-  flex: 1; /* Ensure it takes up remaining space */
+  flex: 1;
   padding: 0 10px;
 `;
+
+const CartTitle = styled.h2`
+  color: ${({ theme }) => theme.text};
+`;
+
+const CartDetails = styled.p`
+color: ${({ theme }) => theme.text};
+`
 
 const Cart = () => {
   const { cart, removeFromCart } = useContext(CartContext);
@@ -91,18 +100,18 @@ const Cart = () => {
   return (
     <PageCartWrapper>
       <CartWrapper>
-        <h2>Cart</h2>
+        <CartTitle>Cart</CartTitle>
         {cart.length === 0 ? (
-          <p>Your cart is empty.</p>
+          <CartDetails>Your cart is empty.</CartDetails>
         ) : (
           <>
             {cart.map((item, index) => (
               <CartItem key={index}>
                 <CartImage src={item.picture} alt={item.title} />
                 <CartDetail>
-                  <p>{item.title}</p>
-                  <p>Price: ${item.price}</p>
-                  <p>Quantity: {item.quantity}</p>
+                  <CartDetails>{item.title}</CartDetails>
+                  <CartDetails>Price: ${item.price}</CartDetails>
+                  <CartDetails>Quantity: {item.quantity}</CartDetails>
                 </CartDetail>
                 <DeleteButton onClick={() => removeFromCart(index)}>
                   Delete
