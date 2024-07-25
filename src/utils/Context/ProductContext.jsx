@@ -10,7 +10,6 @@ export const ProductProvider = ({ children }) => {
   console.log("t2 ProductProvider ", { products, loading, categories });
 
   useEffect(() => {
-    console.log("t1 useEffect");
     const fetchProducts = async () => {
       console.log("t1 fetching ");
       try {
