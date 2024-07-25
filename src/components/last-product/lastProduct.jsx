@@ -41,7 +41,6 @@ const CardButton = styled(Button)`
 `;
 
 export const LastProductSection = ({ product, handleAddToCart }) => {
-  console.log("t1 product : ", product);
   return (
     <>
       <StyledItemContainer>
