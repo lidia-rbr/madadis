@@ -11,7 +11,6 @@ export const ProductProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      console.log("t1 fetching ");
       try {
         const response = await fetch("https://dummyjson.com/products?limit=0");
         const data = await response.json();
