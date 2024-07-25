@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import LastProductSection from "../components/lastProducts/LastProducts";
+import LastProductSection from "../components/last-products/lastProducts";
 
 const HomeBanner = styled.div`
   display: flex;

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../../utils/Context/ThemeContext";
-import { CartContext } from "../../utils/Context/CartContext";
-import { UserContext } from "../../utils/Context/UserContext";
+import { ThemeContext } from "../../utils/context/ThemeContext";
+import { CartContext } from "../../utils/context/CartContext";
+import { UserContext } from "../../utils/context/UserContext";
 
 const bounce = keyframes`
   0%, 100% {

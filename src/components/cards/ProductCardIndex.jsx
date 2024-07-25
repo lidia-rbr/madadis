@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
-import { CartContext } from "../../utils/Context/CartContext";
+import { CartContext } from "../../utils/context/CartContext";
 import { useContext } from "react";
 
 const CardLabel = styled.div`

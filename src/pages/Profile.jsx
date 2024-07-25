@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useContext } from "react";
-import { UserContext } from "../utils/Context/UserContext";
+import { UserContext } from "../utils/context/UserContext";
 
 const ProfileWrapper = styled.div`
   display: flex;

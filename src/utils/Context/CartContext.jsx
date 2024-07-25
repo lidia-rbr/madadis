@@ -4,12 +4,13 @@ export const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  console.log("t2 CartContextProvider ", cart);
 
   // Handling item quantity
   const addToCart = (item) => {
     // Check if item already exists
     const existingItemIndex = cart.findIndex(
-      (cartItem) => cartItem.id === item.id
+      (cartItem) => cartItem.id === item.id,
     );
 
     if (existingItemIndex !== -1) {

@@ -7,9 +7,12 @@ export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState(["hello", "worldss"]);
+  console.log("t2 ProductProvider ", { products, loading, categories });
 
   useEffect(() => {
+    console.log("t1 useEffect");
     const fetchProducts = async () => {
+      console.log("t1 fetching ");
       try {
         const response = await fetch("https://dummyjson.com/products?limit=0");
         const data = await response.json();
@@ -34,4 +37,3 @@ export const ProductProvider = ({ children }) => {
     </ProductContext.Provider>
   );
 };
-  

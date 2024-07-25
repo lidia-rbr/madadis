@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { CartContext } from "../utils/Context/CartContext";
+import { CartContext } from "../utils/context/CartContext";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../utils/Context/UserContext";
+import { UserContext } from "../utils/context/UserContext";
 
 const PageCartWrapper = styled.div`
   margin-top: 60px;
@@ -65,7 +65,7 @@ const CheckoutButton = styled(Button)`
   border: none;
   display: inline-block;
   background-color: ${({ theme }) => theme.accent};
-  color:${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.background};
   &:hover {
     background-color: ${({ theme }) => theme.primary};
   }
@@ -81,8 +81,8 @@ const CartTitle = styled.h2`
 `;
 
 const CartDetails = styled.p`
-color: ${({ theme }) => theme.text};
-`
+  color: ${({ theme }) => theme.text};
+`;
 
 const Cart = () => {
   const { cart, removeFromCart } = useContext(CartContext);
