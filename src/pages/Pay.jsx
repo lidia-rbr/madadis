@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { CartContext } from "../utils/Context/CartContext";
+import { CartContext } from "../utils/context/CartContext";
 import { useNavigate } from "react-router-dom";
 
 const PayWrapper = styled.div`
@@ -54,7 +54,7 @@ const Pay = () => {
   const [loading, setLoading] = useState(false);
   const totalAmount = cart.reduce(
     (total, item) => total + item.price * item.quantity,
-    0
+    0,
   );
 
   const handlePayment = (e) => {

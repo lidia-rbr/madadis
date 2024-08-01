@@ -13,7 +13,7 @@ const CardWrapper = styled.div`
   justify-content: center;
   border: 1px solid #ccc;
   border-radius: 8px;
-    width: 200px;  // Set a fixed width
+  width: 200px; // Set a fixed width
   height: 100px; // Set a fixed height
   background-color: ${({ theme }) => theme.contactUs};
   &:hover {
@@ -37,9 +37,7 @@ function CategoryCard({ slug, category }) {
   return (
     <CategoryLink to={`/products?category=${slug}`}>
       <CardWrapper>
-        <CardLabel>
-          {category}
-        </CardLabel>
+        <CardLabel>{category}</CardLabel>
       </CardWrapper>
     </CategoryLink>
   );

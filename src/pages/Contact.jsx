@@ -4,8 +4,8 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const PageFormWrapper = styled.div`
   margin-top: 60px;
-  padding-top:60px;
-  padding-bottom:60px;
+  padding-top: 60px;
+  padding-bottom: 60px;
   display: flex;
   justify-content: center;
   background: radial-gradient(
@@ -21,12 +21,12 @@ const FormContainer = styled.div`
   // margin: 80px auto 80px auto;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color:${({ theme }) => theme.cards};
+  background-color: ${({ theme }) => theme.cards};
   color: ${({ theme }) => theme.text};
 `;
 
 const FormButton = styled(Button)`
-  color:${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.background};
   background-color: ${({ theme }) => theme.accent};
   text-decoration: none;
   border: none;

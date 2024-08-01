@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { UserContext } from "../utils/Context/UserContext";
+import { UserContext } from "../utils/context/UserContext";
 import Loader from "../components/loader/loaderIndex";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -87,7 +87,7 @@ const LoginForm = () => {
         return;
       }
       setUser(userInfo);
-      navigate(redirectPath);  // Redirect to the path based on the query parameter
+      navigate(redirectPath); // Redirect to the path based on the query parameter
     } catch (e) {
       setError("Error occurred during login");
     } finally {

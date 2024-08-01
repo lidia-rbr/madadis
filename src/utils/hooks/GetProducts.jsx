@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 // Check axios
 // Check reactstrap
@@ -8,21 +8,21 @@ export function useFetch(url) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (!url) return
-    setLoading(true)
+    if (!url) return;
+    setLoading(true);
     async function fetchData() {
       try {
-        const response = await fetch(url)
-        const data = await response.json()
-        setData(data)
+        const response = await fetch(url);
+        const data = await response.json();
+        setData(data);
       } catch (err) {
-        console.log(err)
-        setError(true)
+        console.log(err);
+        setError(true);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
-    fetchData()
-  }, [url]) // liste des paramètres 
-  return { isLoading, data, error }
+    fetchData();
+  }, [url]); // liste des paramètres
+  return { isLoading, data, error };
 }

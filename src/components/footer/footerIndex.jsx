@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const FooterContainer = styled.footer`
   background-color: ${({ theme }) => theme.footerBackground};
@@ -50,15 +50,16 @@ const FooterText = styled.p`
   font-size: 0.7rem;
 `;
 
-
 function Footer() {
   return (
     <FooterContainer>
       <FooterSection>
         <FooterTitle>About Us</FooterTitle>
-        <FooterText>Learn more about our mission, vision, and values.</FooterText>
+        <FooterText>
+          Learn more about our mission, vision, and values.
+        </FooterText>
       </FooterSection>
-     
+
       <FooterSection>
         <FooterTitle>Contact Us</FooterTitle>
         <FooterText>Email: info@madadise-shop.com</FooterText>
@@ -67,13 +68,25 @@ function Footer() {
       </FooterSection>
       <FooterSection>
         <FooterTitle>Follow Us</FooterTitle>
-        <SocialMediaLink href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+        <SocialMediaLink
+          href="https://facebook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <i className="fab fa-facebook-f"></i>
         </SocialMediaLink>
-        <SocialMediaLink href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+        <SocialMediaLink
+          href="https://twitter.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <i className="fab fa-twitter"></i>
         </SocialMediaLink>
-        <SocialMediaLink href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+        <SocialMediaLink
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <i className="fab fa-instagram"></i>
         </SocialMediaLink>
       </FooterSection>

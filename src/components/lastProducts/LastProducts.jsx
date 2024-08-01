@@ -1,10 +1,10 @@
-import { ProductContext } from "../../utils/Context/ProductContext";
+import { ProductContext } from "../../utils/context/ProductContext";
 import { useContext } from "react";
 import styled from "styled-components";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
-import { CartContext } from "../../utils/Context/CartContext";
+import { CartContext } from "../../utils/context/CartContext";
 import Loader from "../loader/loaderIndex";
 
 const LoaderWrapper = styled.div`

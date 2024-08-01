@@ -8,14 +8,14 @@ const CardLabel = styled.div`
   color: black;
   font-size: 22px;
   font-weight: bold;
-  text-align:center
+  text-align: center;
 `;
 
 const CardPrice = styled.div`
   color: black;
   font-size: 25px;
   font-weight: bold;
-  text-align:center;
+  text-align: center;
 `;
 
 const CardDescription = styled.div`
@@ -46,25 +46,24 @@ const CardImage = styled.img`
 `;
 
 const CardLink = styled(Link)`
-  text-decoration:none;
-`
+  text-decoration: none;
+`;
 
 const CardButton = styled(Button)`
-    background-color: dodgerblue;
-    color: white;
-    text-decoration: none;
-    padding: .6rem 2rem;
-    margin-top: 1rem;
-    display: inline-block;
-    `
-
+  background-color: dodgerblue;
+  color: white;
+  text-decoration: none;
+  padding: 0.6rem 2rem;
+  margin-top: 1rem;
+  display: inline-block;
+`;
 
 function Card({ title, description, picture, price, link }) {
   return (
     <CardWrapper>
       <CardLink to={link}>
         <CardLabel>{title}</CardLabel>
-        <CardImage src={picture} alt="freelance"/>
+        <CardImage src={picture} alt="freelance" />
         <CardPrice>{price}$</CardPrice>
         <CardDescription>{description}</CardDescription>
         <CardButton>Add to cart</CardButton>

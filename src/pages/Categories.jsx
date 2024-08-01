@@ -23,13 +23,19 @@ const LoaderWrapper = styled.div`
   align-items: center;
   flex: 1;
   min-height: 50vh;
-`
+`;
 
 function CategoryPage() {
-  const { isLoading, data, error } = useFetch('https://dummyjson.com/products/categories');
+  const { isLoading, data, error } = useFetch(
+    "https://dummyjson.com/products/categories",
+  );
 
   if (isLoading) {
-    return <LoaderWrapper><Loader /></LoaderWrapper>;
+    return (
+      <LoaderWrapper>
+        <Loader />
+      </LoaderWrapper>
+    );
   }
   if (error) {
     console.log(error);

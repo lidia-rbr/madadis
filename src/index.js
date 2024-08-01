@@ -12,14 +12,14 @@ import Contact from "./pages/Contact";
 import Products from "./pages/Products";
 import Error from "./pages/Error";
 import GlobalStyle from "./utils/style/GlobalStyle";
-import { CustomThemeProvider } from "./utils/Context/ThemeContext";
+import { CustomThemeProvider } from "./utils/context/ThemeContext";
 import ProductDetail from "./pages/ProductDetail";
-import { ProductProvider } from "./utils/Context/ProductContext";
-import { CartContextProvider } from "./utils/Context/CartContext";
-import Footer from "./components/footer/footerIndex";
+import { ProductProvider } from "./utils/context/ProductContext";
+import { CartContextProvider } from "./utils/context/CartContext";
+import Footer from "./components/footer/FooterIndex";
 import { Wrapper, Content } from "./components/wrapper/wrapperIndex";
 import LoginForm from "./pages/loginIndex";
-import { UserContextProvider } from "./utils/Context/UserContext";
+import { UserContextProvider } from "./utils/context/UserContext";
 import UserProfile from "./pages/Profile";
 import Pay from "./pages/Pay";
 import ThankYou from "./pages/Thankyou";
@@ -57,7 +57,7 @@ root.render(
         </ProductProvider>
       </CustomThemeProvider>
     </Router>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 reportWebVitals();

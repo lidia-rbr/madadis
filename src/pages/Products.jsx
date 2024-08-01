@@ -111,7 +111,7 @@ const LoaderWrapper = styled.div`
   align-items: center;
   flex: 1;
   min-height: 50vh;
-`
+`;
 
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState(useQuery());
@@ -132,11 +132,15 @@ const Products = () => {
     data: pageProductsData,
     error: errorPageProducts,
   } = useFetch(
-    `https://dummyjson.com/products?limit=${nbOfProductsPerPage}&skip=${firstProductIndex}`
+    `https://dummyjson.com/products?limit=${nbOfProductsPerPage}&skip=${firstProductIndex}`,
   );
 
   if (loadingTotal || loadingPageProducts) {
-    return <LoaderWrapper><Loader /></LoaderWrapper>;
+    return (
+      <LoaderWrapper>
+        <Loader />
+      </LoaderWrapper>
+    );
   }
   if (errorTotal || errorPageProducts) {
     return (
@@ -158,7 +162,7 @@ const Products = () => {
   const filteredProducts =
     selectedCategory && selectedCategory !== "all"
       ? totalData.products.filter(
-          (product) => product.category === selectedCategory
+          (product) => product.category === selectedCategory,
         )
       : products;
 
@@ -190,7 +194,9 @@ const Products = () => {
           </StyledDropdownToggle>
           <StyledMenu>
             <StyledItem eventKey="all">
-              <StyledLink to={`/products`}>All ({totalData.products.length})</StyledLink>
+              <StyledLink to={`/products`}>
+                All ({totalData.products.length})
+              </StyledLink>
             </StyledItem>
             {categories.map((category) => (
               <StyledItem key={category} eventKey={category}>

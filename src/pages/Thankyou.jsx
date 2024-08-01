@@ -26,12 +26,9 @@ const MessageWrapper = styled.div`
 `;
 
 const ThankYou = () => {
-
   return (
     <PageMessageWrapper>
-      <MessageWrapper>
-        Thank you for your purchase!
-      </MessageWrapper>
+      <MessageWrapper>Thank you for your purchase!</MessageWrapper>
     </PageMessageWrapper>
   );
 };
