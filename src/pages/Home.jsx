@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import LastProductSection from "../components/lastProducts/LastProducts";
+import LastProductsSection from "../components/last-products/LastProducts";
 
 const HomeBanner = styled.div`
   display: flex;
@@ -50,7 +50,7 @@ function Home() {
           </svg>
         </div>
       </HomeBanner>
-      <LastProductSection />
+      <LastProductsSection />
     </>
   );
 }
