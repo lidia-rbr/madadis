@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import emailjs from 'emailjs-com';
 
 const PageFormWrapper = styled.div`
   margin-top: 60px;
@@ -52,12 +53,37 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here, e.g., send data to backend or display a message
-    console.log(formData);
+
+    // EmailJS configuration
+    const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const userID = process.env.REACT_APP_EMAILJS_USER_ID;
+
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    };
+
+    emailjs.send(serviceID, templateID, templateParams, userID).then(
+      (response) => {
+        console.log("SUCCESS!", response.status, response.text);
+        // Reset form after successful submission
+        alert("Message sent");
+        setFormData({
+          name: "", 
+          email: "",
+          message: "",
+        });
+      },
+      (error) => {
+        console.error("FAILED...", error);
+      }
+    );
     // Reset form after submission
     setFormData({
       name: "",
-      email: "",
+      email: "",  
       message: "",
     });
   };

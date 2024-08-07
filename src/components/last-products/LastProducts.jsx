@@ -91,11 +91,11 @@ function LastProductsSection() {
     (id) => {
       const product = products.find((product) => product.id === id);
       const item = {
-        title: product.title,
+        title: product.title, 
         description: product.description,
         picture: product.picture,
         price: product.price,
-        id: id,
+        id: id, 
         quantity: 1,
       };
       addToCart(item);
