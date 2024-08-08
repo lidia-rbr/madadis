@@ -1,15 +1,24 @@
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect, createContext } from "react";
 
 export const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    // Load cart from localStorage if it exists
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   // Handling item quantity
   const addToCart = (item) => {
     // Check if item already exists
     const existingItemIndex = cart.findIndex(
-      (cartItem) => cartItem.id === item.id,
+      (cartItem) => cartItem.id === item.id
     );
 
     if (existingItemIndex !== -1) {
