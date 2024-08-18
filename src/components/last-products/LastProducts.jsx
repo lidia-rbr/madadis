@@ -75,32 +75,32 @@ function LastProductsSection() {
     () =>
       contextProducts.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
-        [contextProducts],
+        [contextProducts]
       ),
-    [contextProducts],
+    [contextProducts]
   );
 
   // Get the last 6 products based on createdAt date
   // const lastSixProducts = products.slice(0, 6);
   const lastSixProducts = useMemo(
-    () => [contextProducts[0]],
-    [contextProducts],
+    () => contextProducts.slice(0,6),
+    [contextProducts]
   );
 
   const handleAddToCart = useCallback(
     (id) => {
       const product = products.find((product) => product.id === id);
       const item = {
-        title: product.title, 
+        title: product.title,
         description: product.description,
         picture: product.picture,
         price: product.price,
-        id: id, 
+        id: id,
         quantity: 1,
       };
       addToCart(item);
     },
-    [addToCart, products],
+    [addToCart, products]
   );
 
   console.log("t1 lastProducts : ", { lastSixProducts, products });
@@ -117,14 +117,14 @@ function LastProductsSection() {
             </StyledItemContainer>
           </StyledCarouselItem>
         ) : (
-          <StyledCarouselItem>
-            {lastSixProducts.map((product) => (
+            lastSixProducts.map((product) => (
+              <StyledCarouselItem key={product.id}>
               <LastProductSection
                 product={product}
                 handleAddToCart={handleAddToCart}
               />
-            ))}
-          </StyledCarouselItem>
+            </StyledCarouselItem>
+            ))
         )}
       </StyledCarousel>
     </>
