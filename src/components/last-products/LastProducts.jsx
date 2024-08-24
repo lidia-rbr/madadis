@@ -45,6 +45,16 @@ const StyledCarousel = styled(Carousel)`
   .carousel-control-prev {
     filter: invert(1);
   }
+
+  @media (max-width: 600px) {
+    margin: auto;
+    min-height: 60vh;
+    width: 85%;
+    top: -19vh;
+    right: 0;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
 `;
 
 const StyledCarouselItem = styled(Carousel.Item)`
@@ -55,14 +65,16 @@ const StyledItemContainer = styled.div`
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
-  height: 70vh;
   overflow: hidden;
   background-color: ${({ theme }) => theme.cards};
   box-shadow: ${({ theme }) => theme.accent} 2px 5px 9px;
 
   @media (max-width: 1024px) {
     display: block;
+  }
+
+  @media (max-width: 600px) {
+    height: 60vh;
   }
 `;
 
@@ -83,7 +95,7 @@ function LastProductsSection() {
   // Get the last 6 products based on createdAt date
   // const lastSixProducts = products.slice(0, 6);
   const lastSixProducts = useMemo(
-    () => contextProducts.slice(0,6),
+    () => contextProducts.slice(0, 6),
     [contextProducts]
   );
 
@@ -117,14 +129,14 @@ function LastProductsSection() {
             </StyledItemContainer>
           </StyledCarouselItem>
         ) : (
-            lastSixProducts.map((product) => (
-              <StyledCarouselItem key={product.id}>
+          lastSixProducts.map((product) => (
+            <StyledCarouselItem key={product.id}>
               <LastProductSection
                 product={product}
                 handleAddToCart={handleAddToCart}
               />
             </StyledCarouselItem>
-            ))
+          ))
         )}
       </StyledCarousel>
     </>

@@ -14,6 +14,10 @@ const HomeBanner = styled.div`
   @media (max-width: 1024px) {
     height: 60vh;
   }
+
+  @media (max-width: 600px) {
+    height: 50vh;
+  }
 `;
 
 const HomeTitle = styled.h1`
@@ -25,6 +29,11 @@ const HomeTitle = styled.h1`
   margin-bottom: 4vh;
   font-size: 6vw;
   font-weight: bolder;
+
+  @media (max-width: 600px) {
+    font-size: 12vw;
+    text-align: center;
+  }
 `;
 
 function Home() {
@@ -55,4 +64,4 @@ function Home() {
   );
 }
 
-export default Home;  
+export default Home;

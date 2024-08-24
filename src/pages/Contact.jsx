@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import emailjs from 'emailjs-com';
+import emailjs from "emailjs-com";
 
 const PageFormWrapper = styled.div`
   margin-top: 60px;
@@ -24,6 +24,10 @@ const FormContainer = styled.div`
   border-radius: 8px;
   background-color: ${({ theme }) => theme.cards};
   color: ${({ theme }) => theme.text};
+
+  @media (max-width: 600px) {
+    width: 90%;
+  }
 `;
 
 const FormButton = styled(Button)`
@@ -71,7 +75,7 @@ const ContactForm = () => {
         // Reset form after successful submission
         alert("Message sent");
         setFormData({
-          name: "", 
+          name: "",
           email: "",
           message: "",
         });
@@ -83,7 +87,7 @@ const ContactForm = () => {
     // Reset form after submission
     setFormData({
       name: "",
-      email: "",  
+      email: "",
       message: "",
     });
   };

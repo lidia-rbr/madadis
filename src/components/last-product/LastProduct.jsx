@@ -13,8 +13,8 @@ const StyledItemContainer = styled.div`
   background-color: ${({ theme }) => theme.cards};
   box-shadow: ${({ theme }) => theme.accent} 2px 5px 9px;
 
-  @media (max-width: 1024px) {
-    display: block;
+  @media (max-width: 600px) {
+  height: 60vh;
   }
 `;
 
@@ -30,6 +30,10 @@ const CarouselImage = styled.img`
   position: relative;
   overflow: hidden;
   object-fit: contain;
+
+  @media (max-width: 600px) {
+    height: 175px;
+  }
 `;
 
 const CardButton = styled(Button)`
