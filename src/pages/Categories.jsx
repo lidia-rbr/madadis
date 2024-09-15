@@ -27,7 +27,7 @@ const LoaderWrapper = styled.div`
 
 function CategoryPage() {
   const { isLoading, data, error } = useFetch(
-    "https://dummyjson.com/products/categories",
+    "https://dummyjson.com/products/categories"
   );
 
   if (isLoading) {

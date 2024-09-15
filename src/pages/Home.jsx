@@ -58,6 +58,7 @@ function Home() {
             ></path>
           </svg>
         </div>
+
       </HomeBanner>
       <LastProductsSection />
     </>

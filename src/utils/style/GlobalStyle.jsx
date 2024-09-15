@@ -12,6 +12,7 @@ function GlobalStyle() {
   body {  
   min-height: 100vh;
   background-color: ${({ theme }) => theme.body};
+  
   }
 
   .custom-shape-divider-bottom-1720480589 {

@@ -17,6 +17,10 @@ const PageCartWrapper = styled.div`
     ${({ theme }) => theme.secondary} 100%
   );
   min-height: 65vh;
+
+  @media (max-width: 600px) {
+  padding-top: 30px;
+  }
 `;
 
 const CartWrapper = styled.div`
@@ -26,7 +30,11 @@ const CartWrapper = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.contactUs};
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for better appearance */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 600px) {
+    width: 95%;
+  }
 `;
 
 const CartItem = styled.div`
@@ -38,6 +46,7 @@ const CartItem = styled.div`
   border: 1px solid #eee;
   border-radius: 5px;
   background-color: ${({ theme }) => theme.body};
+  
 `;
 
 const CartImage = styled.img`

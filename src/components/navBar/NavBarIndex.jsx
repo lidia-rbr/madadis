@@ -51,6 +51,7 @@ const StyledRightNav = styled.div`
 const StyledLeftNav = styled.div`
   float: left;
   margin-right: auto;
+  margin-left:2%;
 
   @media (max-width: 600px) {
     max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};

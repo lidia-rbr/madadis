@@ -20,6 +20,10 @@ const CardWrapper = styled.div`
     cursor: pointer;
     box-shadow: 2px 2px 10px grey;
   }
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const CardLabel = styled.div`

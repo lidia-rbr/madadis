@@ -18,12 +18,17 @@ const CardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  justify-content: center;
   padding: 20px;
   background: radial-gradient(
     circle,
     ${({ theme }) => theme.primary} 0%,
     ${({ theme }) => theme.secondary} 100%
   );
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 47%);
+  }
 `;
 
 const StyledPagination = styled(Pagination)`
@@ -59,6 +64,10 @@ const CategoryDisplayed = styled.h1`
   margin-left: auto;
   color: ${({ theme }) => theme.primary};
   text-align: right;
+
+  @media (max-width: 600px) {
+    font-size: 2vh;
+  }
 `;
 
 const StyledDropdownToggle = styled(Dropdown.Toggle)`
@@ -132,7 +141,7 @@ const Products = () => {
     data: pageProductsData,
     error: errorPageProducts,
   } = useFetch(
-    `https://dummyjson.com/products?limit=${nbOfProductsPerPage}&skip=${firstProductIndex}`,
+    `https://dummyjson.com/products?limit=${nbOfProductsPerPage}&skip=${firstProductIndex}`
   );
 
   if (loadingTotal || loadingPageProducts) {
@@ -162,7 +171,7 @@ const Products = () => {
   const filteredProducts =
     selectedCategory && selectedCategory !== "all"
       ? totalData.products.filter(
-          (product) => product.category === selectedCategory,
+          (product) => product.category === selectedCategory
         )
       : products;
 

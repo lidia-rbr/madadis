@@ -11,17 +11,17 @@ const LoaderWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex: 1;
-  min-height: 70vh;
+  min-height: 70vw;
 `;
 
 const StyledCarousel = styled(Carousel)`
   margin: auto;
-  min-height: 70vh;
+  min-height: 70vw;
   width: 45%;
   position: relative;
   top: -49vh;
   right: -25vw;
-  margin-bottom: 20px;
+  margin-bottom: -28vh;
   margin-top: 20px;
 
   .carousel-indicators {

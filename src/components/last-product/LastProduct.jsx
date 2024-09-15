@@ -8,13 +8,16 @@ const StyledItemContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 70%;
-  height: 70vh;
+  height: 70vw;
   overflow: hidden;
   background-color: ${({ theme }) => theme.cards};
   box-shadow: ${({ theme }) => theme.accent} 2px 5px 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 
   @media (max-width: 600px) {
-  height: 60vh;
+    height: 60vh;
   }
 `;
 

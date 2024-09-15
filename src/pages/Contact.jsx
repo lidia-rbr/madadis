@@ -8,7 +8,9 @@ const PageFormWrapper = styled.div`
   padding-top: 60px;
   padding-bottom: 60px;
   display: flex;
+  flex:1;
   justify-content: center;
+  min-height: 78vh;
   background: radial-gradient(
     circle,
     ${({ theme }) => theme.primary} 0%,
@@ -24,6 +26,8 @@ const FormContainer = styled.div`
   border-radius: 8px;
   background-color: ${({ theme }) => theme.cards};
   color: ${({ theme }) => theme.text};
+  height: fit-content;
+  // max-height: 42vh;
 
   @media (max-width: 600px) {
     width: 90%;
