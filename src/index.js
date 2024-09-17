@@ -49,15 +49,15 @@ root.render(
                     <Route path="/thank-you" element={<ThankYou />} />
                     <Route path="*" element={<Error />} />
                   </Routes>
+                  <Footer />
                 </Content>
-                <Footer />
               </Wrapper>
             </CartContextProvider>
           </UserContextProvider>
         </ProductProvider>
       </CustomThemeProvider>
     </Router>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
 
 reportWebVitals();

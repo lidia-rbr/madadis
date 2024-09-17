@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const FooterContainer = styled.footer`
   background-color: ${({ theme }) => theme.footerBackground};
@@ -10,7 +10,11 @@ const FooterContainer = styled.footer`
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
+  bottom:0px;
   width: 100%;
+  // z-index:1000;
+  // height:20vh
+
 `;
 
 const FooterSection = styled.div`

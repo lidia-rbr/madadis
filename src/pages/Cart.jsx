@@ -16,10 +16,10 @@ const PageCartWrapper = styled.div`
     ${({ theme }) => theme.primary} 0%,
     ${({ theme }) => theme.secondary} 100%
   );
-  min-height: 65vh;
+  flex: 1;
 
   @media (max-width: 600px) {
-  padding-top: 30px;
+    padding-top: 30px;
   }
 `;
 
@@ -46,7 +46,6 @@ const CartItem = styled.div`
   border: 1px solid #eee;
   border-radius: 5px;
   background-color: ${({ theme }) => theme.body};
-  
 `;
 
 const CartImage = styled.img`

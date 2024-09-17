@@ -8,9 +8,9 @@ const PageFormWrapper = styled.div`
   padding-top: 60px;
   padding-bottom: 60px;
   display: flex;
-  flex:1;
+  flex: 1;
   justify-content: center;
-  min-height: 78vh;
+  flex: 1;
   background: radial-gradient(
     circle,
     ${({ theme }) => theme.primary} 0%,

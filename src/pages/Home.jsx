@@ -18,6 +18,10 @@ const HomeBanner = styled.div`
   @media (max-width: 600px) {
     height: 50vh;
   }
+
+  @media (min-width: 600px) {
+    flex: 1;
+  }
 `;
 
 const HomeTitle = styled.h1`
@@ -58,7 +62,6 @@ function Home() {
             ></path>
           </svg>
         </div>
-
       </HomeBanner>
       <LastProductsSection />
     </>

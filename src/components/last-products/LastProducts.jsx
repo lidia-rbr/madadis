@@ -21,7 +21,7 @@ const StyledCarousel = styled(Carousel)`
   position: relative;
   top: -49vh;
   right: -25vw;
-  margin-bottom: -28vh;
+  margin-bottom: -40vh;
   margin-top: 20px;
 
   .carousel-indicators {

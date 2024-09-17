@@ -3,16 +3,14 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh; /* Ensures the body takes at least the height of the viewport */
+  margin: 0;
 `;
 
 const Content = styled.div`
-  flex: 1;
-  //   background: radial-gradient(
-  //   circle,
-  //   ${({ theme }) => theme.primary} 0%,
-  //   ${({ theme }) => theme.secondary} 100%
-  // );
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;
 
 export { Wrapper, Content };

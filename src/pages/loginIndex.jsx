@@ -10,6 +10,7 @@ const PageFormWrapper = styled.div`
   padding-top: 60px;
   padding-bottom: 60px;
   display: flex;
+  flex:1;
   justify-content: center;
   background: radial-gradient(
     circle,
@@ -25,7 +26,7 @@ const FormContainer = styled.div`
   border-radius: 8px;
   background-color: ${({ theme }) => theme.cards};
   color: ${({ theme }) => theme.text};
-  min-height: 43vh;
+  height: 32vh;
 `;
 
 const FormButton = styled(Button)`
