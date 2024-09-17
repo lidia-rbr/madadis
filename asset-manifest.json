@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/madadis/static/css/main.ff02f4b5.css",
-    "main.js": "/madadis/static/js/main.d5a82df6.js",
+    "main.js": "/madadis/static/js/main.b40960d6.js",
     "static/js/453.01575bbf.chunk.js": "/madadis/static/js/453.01575bbf.chunk.js",
     "index.html": "/madadis/index.html",
     "main.ff02f4b5.css.map": "/madadis/static/css/main.ff02f4b5.css.map",
-    "main.d5a82df6.js.map": "/madadis/static/js/main.d5a82df6.js.map",
+    "main.b40960d6.js.map": "/madadis/static/js/main.b40960d6.js.map",
     "453.01575bbf.chunk.js.map": "/madadis/static/js/453.01575bbf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ff02f4b5.css",
-    "static/js/main.d5a82df6.js"
+    "static/js/main.b40960d6.js"
   ]
 }
